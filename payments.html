@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+<label>Payment Option</label><br/>
+<select id="payopts" onchange="payChange(this)">
+  <option disabled selected>Select Payment Option</option>
+  <option value="CC">Credit Card</option>
+  <option value="NET">Net Banking</option>
+  <option value="WLT">Wallet</option>
+</select>
+</body>
+<script>
+var bankArr=[{"type":"CC","providers":["ICICI Bank","HDFC Bank","Citibank","SBI","Amex"]},
+            {"type":"NET","providers":["SBI","BOI","HDFC Bank","Axis Bank","Kotak Bank"]},
+             {"type":"WLT","providers":["Paytm","Amazon Pay","Phonepe"]} ]
+    var opt=[];
+	var len=bankArr.length;
+	var options="";
+	var dropdown=document.createElement("select");
+function payChange(ele){
+    
+    var payoption=ele.value;
+var option1="<option disabled selected>Select Payment Provider</option>";
+	 options=options+option1;
+	 console.log("Payment Option :",payoption);
+	 
+	 for(var i=0;i<len;i++){
+	      var p1=bankArr[i];
+	     if(p1.type=="CC" && p1.type==payoption){
+		     opt=p1.providers;
+			 console.log("opt cc : ",opt);
+		 }
+         else if(p1.type=="NET" && p1.type==payoption){
+		     opt=p1.providers;
+          }
+         else if(p1.type=="WLT" && p1.type==payoption){
+		     opt=p1.providers;
+          }
+      }		  
+      options=""
+	  for(var i=0;i<opt.length;i++){
+			   var x=opt[i];
+		      option1="<option>"+x+"</option>";
+	          options=options+option1;
+	  }
+	   dropdown.innerHTML=options;
+	   document.body.appendChild(dropdown);
+   
+ }			 
+</script>
+</html>
